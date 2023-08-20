@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ToDo.ViewModel;
 
@@ -27,5 +26,12 @@ public partial class MainViewModel : ObservableObject
         Items.Add(Text);
 
         Text = string.Empty;
+    }
+
+    [RelayCommand]
+    void Delete(string s)
+    {
+        if (Items.Contains(s))
+            Items.Remove(s);
     }
 }
