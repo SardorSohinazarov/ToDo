@@ -26,7 +26,6 @@
                 FontSize="Medium"
                 Command ="{Binding AddCommand}"/>
 
-
         <CollectionView Grid.Row="2" Grid.ColumnSpan="2"
                         ItemsSource="{Binding Items}">
             <CollectionView.ItemTemplate>
@@ -60,6 +59,21 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-    </Grid>
+        <Grid Grid.Row="2"
+              Grid.ColumnSpan="2"
+              VerticalOptions="End"
+              >
+            <Button Text="About us"
+                Grid.Column="1"
+                Grid.Row="1"
+                BackgroundColor="Purple"
+                FontSize="Medium"
+                HorizontalOptions="Fill"
+                Command="{Binding GotoMeCommand}"
+                    />
+        </Grid>
 
+    </Grid>
+    
+    
 </ContentPage>

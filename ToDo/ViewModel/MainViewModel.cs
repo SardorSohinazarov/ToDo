@@ -6,9 +6,11 @@ namespace ToDo.ViewModel;
 
 public partial class MainViewModel : ObservableObject
 {
-    public MainViewModel()
+    IConnectivity connectivity;
+    public MainViewModel(IConnectivity connectivity)
     {
         Items = new ObservableCollection<string>();
+        this.connectivity = connectivity;
     }
 
     [ObservableProperty]
@@ -18,7 +20,7 @@ public partial class MainViewModel : ObservableObject
     string text;
 
     [RelayCommand]
-    void Add()
+    async Task Add()
     {
         if (string.IsNullOrWhiteSpace(Text))
             return;
@@ -43,5 +45,20 @@ public partial class MainViewModel : ObservableObject
             {
                 {nameof(Detail), new object()}
             });
+    }
+
+    [RelayCommand]
+    async Task GotoMe()
+    {
+        if (connectivity.NetworkAccess == NetworkAccess.Internet)
+        {
+            var ourUrl = "https://www.youtube.com/@sardorsohinazarov";
+            Launcher.OpenAsync(new Uri(ourUrl));
+        }
+        else
+        {
+            await Shell.Current.DisplayAlert("Oh, No !!!", "Check your network", "OK");
+            return;
+        }
     }
 }
