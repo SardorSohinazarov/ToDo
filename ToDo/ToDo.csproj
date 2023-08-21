@@ -49,10 +49,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Images\todo1.png" />
-	  <None Remove="Resources\Images\todolist.png" />
 	  <None Remove="Resources\Images\todonew.png" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Detail.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

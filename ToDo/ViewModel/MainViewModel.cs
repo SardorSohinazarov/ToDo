@@ -20,7 +20,7 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     void Add()
     {
-        if (string.IsNullOrEmpty(Text))
+        if (string.IsNullOrWhiteSpace(Text))
             return;
 
         Items.Add(Text);
@@ -33,5 +33,15 @@ public partial class MainViewModel : ObservableObject
     {
         if (Items.Contains(s))
             Items.Remove(s);
+    }
+
+    [RelayCommand]
+    async Task Tap(string s)
+    {
+        await Shell.Current.GoToAsync($"{nameof(Detail)}?Text={DateTime.Now.ToString("yyyy dd, HH:mm:ss")}",
+            new Dictionary<string, object>
+            {
+                {nameof(Detail), new object()}
+            });
     }
 }
